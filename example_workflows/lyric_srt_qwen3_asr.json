@@ -1,0 +1,520 @@
+{
+ "id": "0be4de80-bf07-4cb6-8989-cfd01a3ecf23",
+ "revision": 0,
+ "last_node_id": 6,
+ "last_link_id": 7,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "LoadAudio",
+   "pos": [
+    0,
+    0
+   ],
+   "size": [
+    270,
+    136
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "오디오",
+     "name": "audio",
+     "type": "COMBO",
+     "widget": {
+      "name": "audio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "오디오UI",
+     "name": "audioUI",
+     "type": "AUDIO_UI",
+     "widget": {
+      "name": "audioUI"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "업로드할 파일 선택",
+     "name": "upload",
+     "type": "AUDIOUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "오디오",
+     "name": "AUDIO",
+     "type": "AUDIO",
+     "links": [
+      1,
+      6
+     ]
+    }
+   ],
+   "title": "노래 mp3",
+   "properties": {
+    "Node name for S&R": "LoadAudio"
+   },
+   "widgets_values": [
+    "your_song.mp3",
+    ""
+   ],
+   "widgets_values_named": {
+    "audio": "your_song.mp3",
+    "upload": ""
+   }
+  },
+  {
+   "id": 2,
+   "type": "Qwen3ForcedAlignerConfig",
+   "pos": [
+    0,
+    220
+   ],
+   "size": [
+    295.3599609375,
+    130
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "model_name",
+     "name": "model_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "model_name"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "device",
+     "name": "device",
+     "type": "COMBO",
+     "widget": {
+      "name": "device"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "precision",
+     "name": "precision",
+     "type": "COMBO",
+     "widget": {
+      "name": "precision"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "flash_attention_2",
+     "name": "flash_attention_2",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "flash_attention_2"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "aligner_config",
+     "name": "aligner_config",
+     "type": "QWEN3_ALIGNER_CONF",
+     "links": [
+      2
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "Qwen3ForcedAlignerConfig"
+   },
+   "widgets_values": [
+    "Qwen3-ASR/Qwen3-ForcedAligner-0.6B",
+    "cuda",
+    "bf16",
+    false
+   ],
+   "widgets_values_named": {
+    "model_name": "Qwen3-ASR/Qwen3-ForcedAligner-0.6B",
+    "device": "cuda",
+    "precision": "bf16",
+    "flash_attention_2": false
+   }
+  },
+  {
+   "id": 3,
+   "type": "Qwen3ASRTranscriber",
+   "pos": [
+    340,
+    0
+   ],
+   "size": [
+    270,
+    246
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "audio",
+     "name": "audio",
+     "type": "AUDIO",
+     "link": 1
+    },
+    {
+     "localized_name": "forced_aligner",
+     "name": "forced_aligner",
+     "shape": 7,
+     "type": "QWEN3_ALIGNER_CONF",
+     "link": 2
+    },
+    {
+     "localized_name": "model_name",
+     "name": "model_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "model_name"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "language",
+     "name": "language",
+     "type": "COMBO",
+     "widget": {
+      "name": "language"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "device",
+     "name": "device",
+     "type": "COMBO",
+     "widget": {
+      "name": "device"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "precision",
+     "name": "precision",
+     "type": "COMBO",
+     "widget": {
+      "name": "precision"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "max_new_tokens",
+     "name": "max_new_tokens",
+     "type": "INT",
+     "widget": {
+      "name": "max_new_tokens"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "flash_attention_2",
+     "name": "flash_attention_2",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "flash_attention_2"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "chunk_size",
+     "name": "chunk_size",
+     "type": "INT",
+     "widget": {
+      "name": "chunk_size"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "overlap",
+     "name": "overlap",
+     "type": "INT",
+     "widget": {
+      "name": "overlap"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "text",
+     "name": "text",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "timestamps",
+     "name": "timestamps",
+     "type": "STRING",
+     "links": [
+      3
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "Qwen3ASRTranscriber"
+   },
+   "widgets_values": [
+    "Qwen3-ASR/Qwen3-ASR-1.7B",
+    "Korean",
+    "cuda",
+    "bf16",
+    512,
+    false,
+    30,
+    2
+   ],
+   "widgets_values_named": {
+    "model_name": "Qwen3-ASR/Qwen3-ASR-1.7B",
+    "language": "Korean",
+    "device": "cuda",
+    "precision": "bf16",
+    "max_new_tokens": 512,
+    "flash_attention_2": false,
+    "chunk_size": 30,
+    "overlap": 2
+   }
+  },
+  {
+   "id": 4,
+   "type": "LyricTimestampsToSRT",
+   "pos": [
+    660,
+    0
+   ],
+   "size": [
+    401.1498473203434,
+    622.0740582488992
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "timestamps",
+     "name": "timestamps",
+     "type": "STRING",
+     "link": 3
+    },
+    {
+     "localized_name": "lyrics",
+     "name": "lyrics",
+     "type": "STRING",
+     "widget": {
+      "name": "lyrics"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "max_gap",
+     "name": "max_gap",
+     "type": "FLOAT",
+     "widget": {
+      "name": "max_gap"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "max_chars",
+     "name": "max_chars",
+     "type": "INT",
+     "widget": {
+      "name": "max_chars"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "max_seconds",
+     "name": "max_seconds",
+     "type": "FLOAT",
+     "widget": {
+      "name": "max_seconds"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "end_pad",
+     "name": "end_pad",
+     "type": "FLOAT",
+     "widget": {
+      "name": "end_pad"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "srt",
+     "name": "srt",
+     "type": "STRING",
+     "links": [
+      7
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LyricTimestampsToSRT"
+   },
+   "widgets_values": [
+    "",
+    0.7,
+    24,
+    6,
+    0.15
+   ],
+   "widgets_values_named": {
+    "lyrics": "",
+    "max_gap": 0.7,
+    "max_chars": 24,
+    "max_seconds": 6,
+    "end_pad": 0.15
+   }
+  },
+  {
+   "id": 6,
+   "type": "LyricSRTEditor",
+   "pos": [
+    1100,
+    0
+   ],
+   "size": [
+    760,
+    720
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "audio",
+     "name": "audio",
+     "type": "AUDIO",
+     "link": 6
+    },
+    {
+     "localized_name": "srt",
+     "name": "srt",
+     "type": "STRING",
+     "link": 7
+    },
+    {
+     "localized_name": "filename",
+     "name": "filename",
+     "type": "STRING",
+     "widget": {
+      "name": "filename"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "save_dir",
+     "name": "save_dir",
+     "type": "STRING",
+     "widget": {
+      "name": "save_dir"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "srt",
+     "name": "srt",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "srt_path",
+     "name": "srt_path",
+     "type": "STRING",
+     "links": null
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LyricSRTEditor"
+   },
+   "widgets_values": [
+    "",
+    "",
+    ""
+   ],
+   "widgets_values_named": {
+    "filename": "",
+    "save_dir": "",
+    "lyric_srt_editor": ""
+   }
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   3,
+   0,
+   "AUDIO"
+  ],
+  [
+   2,
+   2,
+   0,
+   3,
+   1,
+   "QWEN3_ALIGNER_CONF"
+  ],
+  [
+   3,
+   3,
+   1,
+   4,
+   0,
+   "STRING"
+  ],
+  [
+   6,
+   1,
+   0,
+   6,
+   0,
+   "AUDIO"
+  ],
+  [
+   7,
+   4,
+   0,
+   6,
+   1,
+   "STRING"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {
+  "comfyui_mcp": {
+   "workflow_uuid": "b14080a9-4b1d-4ad0-8f3d-815b12ad090b"
+  },
+  "ds": {
+   "scale": 0.6014931955645162,
+   "offset": [
+    520.7418114780711,
+    551.9345022991755
+   ]
+  }
+ },
+ "version": 0.4
+}

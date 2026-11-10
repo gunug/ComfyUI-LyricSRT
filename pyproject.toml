@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-lyricsrt"
+description = "Song lyrics to timed SRT with Qwen3-ASR word timestamps, plus an in-node audio+subtitle editor to fix timing and save."
+version = "1.0.0"
+license = { file = "LICENSE" }
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/gunug/ComfyUI-LyricSRT"
+
+[tool.comfy]
+PublisherId = "gunug"
+DisplayName = "ComfyUI-LyricSRT"
+Icon = ""
