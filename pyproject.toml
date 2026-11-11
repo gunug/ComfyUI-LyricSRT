@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-lyricsrt"
 description = "Song lyrics to timed SRT with Qwen3-ASR word timestamps, plus an in-node audio+subtitle editor to fix timing and save."
-version = "1.0.0"
+version = "1.1.0"
 license = { file = "LICENSE" }
 dependencies = []
 
